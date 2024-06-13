@@ -36,11 +36,9 @@ public class AliyunOssUtils {
         String filename = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));
         //上传：
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-
         ossClient.putObject(bucketName, filename, inputStream);
         String url = endpoint.split("//")[0] + "//" + bucketName + "." + endpoint.split("//")[1] + "/" + filename;
         ossClient.shutdown();
-        log.info(url);
         return url;
     }
 
